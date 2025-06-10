@@ -1,6 +1,6 @@
 from playwright.sync_api import Page
 
-from data.data import Url, User
+from data.data import Url, User, Items
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 
@@ -16,3 +16,4 @@ def test_add_item_to_cart(page: Page):
         email=User.user_email,
         password=User.password,
     )
+    main_page.add_item_to_cart([Items.blue_top, Items.stylish_dress])

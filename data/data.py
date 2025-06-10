@@ -4,6 +4,7 @@ class Url:
     login_url = "https://automationexercise.com/login"
     signup_url = "https://automationexercise.com/signup"
     account_created_url = "https://automationexercise.com/account_created"
+    checkout_url = "https://automationexercise.com/checkout"
 
 
 class User:
@@ -52,3 +53,9 @@ class CanadaState:
 class CanadaCity:
     brandon = "Brandon"
     gimli = "Gimli"
+
+class Items:
+    blue_top = 1
+    men_tshirt = 2
+    sleeveless_dress = 3
+    stylish_dress = 4

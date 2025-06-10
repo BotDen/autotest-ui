@@ -5,6 +5,7 @@ from pages.base_page import BasePage
 
 
 class LoginPage(BasePage):
+    """Страница входа/регистрации аккаунта"""
 
     def __init__(self, page):
         super().__init__(page)
@@ -18,16 +19,20 @@ class LoginPage(BasePage):
         self.btn_login = self._login_form.get_by_role("button", name="Login")
 
     def check_open(self):
+        """Проверяем открытие страницы"""
         expect(self.page).to_have_url(Url.login_url)
 
     def fill_form(self, name: str, email: str):
+        """Заполняем поля для регистрации аккаунта"""
         self.name.fill(name)
         self.signup_email.fill(email)
 
     def signup(self):
+        """Нажимаем кнопку 'Signup'"""
         self.btn_signup.click()
 
     def login(self, email: str, password: str):
+        """Входим в аккаунт"""
         self.login_email.fill(email)
         self.login_password.fill(password)
         self.btn_login.click()
