@@ -5,6 +5,7 @@ from pages.base_page import BasePage
 
 
 class AccountCreated(BasePage):
+    """Страница подтверждения оформления аккаунта"""
 
     TITLE = "Account Created!"
     CONGRATULATIONS = "Congratulations! Your new account has been successfully created!"
@@ -20,14 +21,18 @@ class AccountCreated(BasePage):
         self.btn_continue = self._container_success.locator(".btn-primary")
 
     def check_open(self):
+        """Проверка открытия страницы"""
         expect(self.page).to_have_url(Url.account_created_url)
 
     def check_title(self):
+        """Проверка заголовка страницы"""
         expect(self.title).to_have_text(self.TITLE)
 
     def check_text(self):
+        """Проверка текста на странице"""
         self.congratulations.is_visible()
         self.you_can.is_visible()
 
     def click_continue(self):
+        """Нажатие кнопки 'Continue'"""
         self.btn_continue.click()
