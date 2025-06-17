@@ -1,3 +1,6 @@
+from playwright.sync_api import expect
+
+from data.data import Url
 from pages.base_page import BasePage
 
 
@@ -13,6 +16,10 @@ class CheckoutPage(BasePage):
         self.delivery_country = self._address_delivery.locator(".address_country_name")
         self.delivery_phone = self._address_delivery.locator(".address_phone")
         self.cart = self.page.locator("#cart_info")
+        self.btn_place_order = self.page.get_by_role("link", name="Place Order")
+
+    def check_open(self):
+        expect(self.page).to_have_url(Url.checkout_url)
 
     def check_items_in_cart(self, expect_items: list):
         """Проверка товаров в корзине"""
@@ -32,3 +39,11 @@ class CheckoutPage(BasePage):
                 "quantity": item_qty,
                 "total": item_total,
             })
+
+        for expect_item in expect_items:
+            for elem in items_info:
+                if elem["name"] == expect_item:
+                    pass
+
+    def place_order(self):
+        self.btn_place_order.click()
