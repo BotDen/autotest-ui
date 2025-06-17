@@ -1,10 +1,15 @@
+from dataclasses import dataclass
+
 
 class Url:
     main_url = "https://automationexercise.com/"
-    login_url = "https://automationexercise.com/login"
+    login_url = f'{main_url}login'
     signup_url = "https://automationexercise.com/signup"
     account_created_url = "https://automationexercise.com/account_created"
+    cart_url = "https://automationexercise.com/view_cart"
     checkout_url = "https://automationexercise.com/checkout"
+    payment_url = "https://automationexercise.com/payment"
+    done_url = "https://automationexercise.com/payment_done/0"
 
 
 class User:
@@ -59,3 +64,10 @@ class Items:
     men_tshirt = 2
     sleeveless_dress = 3
     stylish_dress = 4
+
+@dataclass
+class Card:
+    number: str
+    month: str
+    year: str
+    cvc: str

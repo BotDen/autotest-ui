@@ -14,7 +14,9 @@ class MainPage(BasePage):
         super().__init__(page)
         self.nav_bar = self.page.locator(".nav")
         self.login = self.page.get_by_role("link", name=" Signup / Login")
+        self.cart = self.page.get_by_role("link", name="Cart")
         self._modal = self.page.locator("#cartModal")
+        self.add_to_cart_btn = self.page.locator(".productinfo")
 
     def check_open(self):
         """Проверяем открытие страницы"""
@@ -24,7 +26,14 @@ class MainPage(BasePage):
         """Переходим на страницу входа/регистрации аккаунта"""
         self.login.click()
 
-    def add_item_to_cart(self, items: list):
+    def go_to_cart(self):
+        """Переходим на страницу корзины"""
+        self.cart.click()
+
+    def add_one_item_to_cart(self, item: str):
+        self.add_to_cart_btn.locator(f"a[data-product-id='{item}']").first.click()
+
+    def add_items_to_cart(self, items: list):
         """Добавляем товар в корзину"""
 
         for product_id in items:
