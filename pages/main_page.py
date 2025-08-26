@@ -1,6 +1,6 @@
+import allure
 from playwright.sync_api import expect
 
-from data.data import Url
 from pages.base_page import BasePage
 
 
@@ -18,30 +18,32 @@ class MainPage(BasePage):
         self._modal = self.page.locator("#cartModal")
         self.add_to_cart_btn = self.page.locator(".productinfo")
 
-    def check_open(self):
-        """Проверяем открытие страницы"""
-        expect(self.page).to_have_url(Url.main_url)
-
     def go_to_login(self):
-        """Переходим на страницу входа/регистрации аккаунта"""
-        self.login.click()
+        """Переход на страницу входа/регистрации аккаунта"""
+        with allure.step("Переходим на страницу вход/регистрация аккаунта"):
+            self.login.click()
 
     def go_to_cart(self):
         """Переходим на страницу корзины"""
-        self.cart.click()
+        with allure.step("Переходим в корзину"):
+            self.cart.click()
 
     def add_one_item_to_cart(self, item: str):
-        self.add_to_cart_btn.locator(f"a[data-product-id='{item}']").first.click()
+        """Добавление одного элемента в корзину"""
+        log_text = ""
+        with allure.step(f"Добавляем в корзину {item}"):
+            self.add_to_cart_btn.locator(f"a[data-product-id='{item}']").first.click()
 
     def add_items_to_cart(self, items: list):
-        """Добавляем товар в корзину"""
+        """Добавление нескольких товаров в корзину"""
 
-        for product_id in items:
-            add_to_cart_btn = self.page.query_selector(f"a[data-product-id='{product_id}']")
+        with allure.step("Добавляем товары в корзину"):
+            for product_id in items:
+                add_to_cart_btn = self.page.query_selector(f"a[data-product-id='{product_id}']")
 
-            if add_to_cart_btn:
-                add_to_cart_btn.click()
+                if add_to_cart_btn:
+                    add_to_cart_btn.click()
 
-                self._modal.wait_for(timeout=5000)
-                expect(self._modal.filter().locator(".modal-title")).to_have_text(self.MODAL_TITLE)
-                self._modal.get_by_role("button", name=self.CONTINUE_SHOPPING).click()
+                    self._modal.wait_for(timeout=5000)
+                    expect(self._modal.filter().locator(".modal-title")).to_have_text(self.MODAL_TITLE)
+                    self._modal.get_by_role("button", name=self.CONTINUE_SHOPPING).click()

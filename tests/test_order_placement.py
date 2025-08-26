@@ -1,3 +1,5 @@
+import allure
+import pytest
 from playwright.sync_api import Page
 
 from data.data import Url, User, Items
@@ -10,6 +12,8 @@ from pages.main_page import MainPage
 from pages.payment_page import PaymentPage
 
 
+@pytest.mark.smoke
+@allure.link("Ссылка на тест кейс")
 def test_success_order_placement(page: Page):
     main_page = MainPage(page)
     main_page.go_to_url(Url.main_url, timeout=50000)
@@ -19,14 +23,14 @@ def test_success_order_placement(page: Page):
     main_page.add_one_item_to_cart(Items.blue_top)
     main_page.go_to_cart()
     cart_page = CartPage(page)
-    cart_page.check_open()
+    cart_page.check_open(Url.cart_url)
     cart_page.proceed_to_checkout()
     checkout_page = CheckoutPage(page)
-    checkout_page.check_open()
+    checkout_page.check_open(Url.checkout_url)
     checkout_page.check_items_in_cart(["Blue top"])
     checkout_page.place_order()
     payment_page = PaymentPage(page)
-    payment_page.check_open()
+    payment_page.check_open(Url.payment_url)
     payment_page.fill_form_payment(
         first_name=User.first_name,
         last_name=User.last_name,
@@ -35,7 +39,7 @@ def test_success_order_placement(page: Page):
         year=CARD_01.year,
         cvc=CARD_01.cvc,
     )
-    payment_page.pay_and_confirm_order()
+    payment_page.pay_order()
     done_page = DonePage(page)
     done_page.check_title()
     done_page.check_text()
