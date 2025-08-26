@@ -3,18 +3,18 @@ from dataclasses import dataclass
 
 class Url:
     main_url = "https://automationexercise.com/"
-    login_url = f'{main_url}login'
-    signup_url = "https://automationexercise.com/signup"
-    account_created_url = "https://automationexercise.com/account_created"
-    cart_url = "https://automationexercise.com/view_cart"
-    checkout_url = "https://automationexercise.com/checkout"
-    payment_url = "https://automationexercise.com/payment"
-    done_url = "https://automationexercise.com/payment_done/0"
+    login_url = f"{main_url}login"
+    signup_url = f"{main_url}signup"
+    account_created_url = f"{main_url}account_created"
+    cart_url = f"{main_url}view_cart"
+    checkout_url = f"{main_url}checkout"
+    payment_url = f"{main_url}payment"
+    done_url = f"{main_url}payment_done/0"
 
 
 class User:
     user_name = "Dim"
-    user_email = "mail1234561@mail.ru"
+    user_email = "mail1234564@mail.ru"
     password = "123456"
     first_name = "Dima"
     last_name = "Sidorov"

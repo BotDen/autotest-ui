@@ -1,6 +1,5 @@
-from playwright.sync_api import expect
+import allure
 
-from data.data import Url
 from pages.base_page import BasePage
 
 
@@ -18,32 +17,32 @@ class CheckoutPage(BasePage):
         self.cart = self.page.locator("#cart_info")
         self.btn_place_order = self.page.get_by_role("link", name="Place Order")
 
-    def check_open(self):
-        expect(self.page).to_have_url(Url.checkout_url)
-
     def check_items_in_cart(self, expect_items: list):
         """Проверка товаров в корзине"""
-        current_items = self.page.query_selector_all("tbody tr[id^='product-']")
-        items_info = []
+        with allure.step("Проверяем добавленный товар в корзине"):
+            current_items = self.page.query_selector_all("tbody tr[id^='product-']")
+            items_info = []
 
-        # получение всех товаров из корзины
-        for item in current_items:
-            item_name = item.query_selector(".cart_description h4 a").inner_text()
-            item_price = item.query_selector(".cart_price p").inner_text()
-            item_qty = item.query_selector(".cart_quantity button.disabled").inner_text()
-            item_total = item.query_selector(".cart_total_price").inner_text()
+            # получение всех товаров из корзины
+            for item in current_items:
+                item_name = item.query_selector(".cart_description h4 a").inner_text()
+                item_price = item.query_selector(".cart_price p").inner_text()
+                item_qty = item.query_selector(".cart_quantity button.disabled").inner_text()
+                item_total = item.query_selector(".cart_total_price").inner_text()
 
-            items_info.append({
-                "name": item_name,
-                "price": item_price,
-                "quantity": item_qty,
-                "total": item_total,
-            })
+                items_info.append({
+                    "name": item_name,
+                    "price": item_price,
+                    "quantity": item_qty,
+                    "total": item_total,
+                })
 
-        for expect_item in expect_items:
-            for elem in items_info:
-                if elem["name"] == expect_item:
-                    pass
+            for expect_item in expect_items:
+                for elem in items_info:
+                    if elem["name"] == expect_item:
+                        pass
 
     def place_order(self):
-        self.btn_place_order.click()
+        """Нажимает на кнопку 'Place_order'"""
+        with allure.step("Нажимаем на кнопку 'Place_order'"):
+            self.btn_place_order.click()

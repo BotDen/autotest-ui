@@ -1,6 +1,5 @@
-from playwright.sync_api import expect
+import allure
 
-from data.data import Url
 from pages.base_page import BasePage
 
 
@@ -11,9 +10,7 @@ class CartPage(BasePage):
         super().__init__(page)
         self.proceed_btn = self.page.get_by_text("Proceed To Checkout")
 
-
-    def check_open(self):
-        expect(self.page).to_have_url(Url.cart_url)
-
     def proceed_to_checkout(self):
-        self.proceed_btn.click()
+        """Нажимает на кнпоку 'Proceed_to_checkout'"""
+        with allure.step("Нажимаем на кнопку 'Proceed to checkout'"):
+            self.proceed_btn.click()

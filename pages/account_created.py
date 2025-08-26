@@ -1,6 +1,6 @@
+import allure
 from playwright.sync_api import expect
 
-from data.data import Url
 from pages.base_page import BasePage
 
 
@@ -20,19 +20,17 @@ class AccountCreated(BasePage):
         self.you_can = self._container_success.filter(has_text=self.YOU_CAN)
         self.btn_continue = self._container_success.locator(".btn-primary")
 
-    def check_open(self):
-        """Проверка открытия страницы"""
-        expect(self.page).to_have_url(Url.account_created_url)
-
-    def check_title(self):
-        """Проверка заголовка страницы"""
-        expect(self.title).to_have_text(self.TITLE)
-
-    def check_text(self):
+    def check_text_congratulations(self):
         """Проверка текста на странице"""
-        self.congratulations.is_visible()
-        self.you_can.is_visible()
+        with allure.step("Проверяем 'congratulations' текст на странице"):
+            self.congratulations.is_visible()
+
+    def check_text_you_can(self):
+        """Проверка текста на странице"""
+        with allure.step("Проверяем 'you_can' текст на странице"):
+            self.you_can.is_visible()
 
     def click_continue(self):
         """Нажатие кнопки 'Continue'"""
-        self.btn_continue.click()
+        with allure.step("Нажимаем на кнопку 'Continue'"):
+            self.btn_continue.click()

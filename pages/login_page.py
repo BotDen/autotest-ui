@@ -1,6 +1,5 @@
-from playwright.sync_api import expect
+import allure
 
-from data.data import Url
 from pages.base_page import BasePage
 
 
@@ -18,21 +17,20 @@ class LoginPage(BasePage):
         self.login_password = self._login_form.get_by_placeholder("Password")
         self.btn_login = self._login_form.get_by_role("button", name="Login")
 
-    def check_open(self):
-        """Проверяем открытие страницы"""
-        expect(self.page).to_have_url(Url.login_url)
-
     def fill_form(self, name: str, email: str):
-        """Заполняем поля для регистрации аккаунта"""
-        self.name.fill(name)
-        self.signup_email.fill(email)
+        """Заполняет поля 'Name' и 'Email' для регистрации аккаунта"""
+        with allure.step(f"Заполняем поля 'Name' и 'Email' значениями '{name}' и '{email}'"):
+            self.name.fill(name)
+            self.signup_email.fill(email)
 
     def signup(self):
-        """Нажимаем кнопку 'Signup'"""
-        self.btn_signup.click()
+        """Нажимает кнопку 'Signup'"""
+        with allure.step("Нажимаем на кнопку 'Signup'"):
+            self.btn_signup.click()
 
     def login(self, email: str, password: str):
-        """Входим в аккаунт"""
-        self.login_email.fill(email)
-        self.login_password.fill(password)
-        self.btn_login.click()
+        """Вход в аккаунт"""
+        with allure.step("Входим в аккаунт"):
+            self.login_email.fill(email)
+            self.login_password.fill(password)
+            self.btn_login.click()
