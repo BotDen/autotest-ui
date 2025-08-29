@@ -16,10 +16,7 @@ def test_success_registration(page: Page):
     main_page.go_to_login()
     login_page = LoginPage(page)
     login_page.check_open(Url.login_url)
-    login_page.fill_form(
-        name=User.user_name,
-        email=User.user_email,
-    )
+    login_page.fill_form(name=User.user_name)
     login_page.signup()
     signup_page = SignupPage(page)
     signup_page.check_open(Url.signup_url)
