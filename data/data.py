@@ -60,7 +60,7 @@ class CanadaCity:
     gimli = "Gimli"
 
 class Items:
-    blue_top = 1
+    blue_top = "1"
     men_tshirt = 2
     sleeveless_dress = 3
     stylish_dress = 4
