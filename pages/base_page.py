@@ -5,6 +5,7 @@ import allure
 from playwright.sync_api import Page, expect
 
 from config import settings
+from data.constants import TIMEOUT_MULTIPLIER
 
 
 class BasePage(ABC):
@@ -21,15 +22,19 @@ class BasePage(ABC):
     def url(self) -> str:
         return urljoin(settings.http_client.client_url, self.URL)
 
-    def go_to_url(self, timeout: int = 50000):
+    def open_url(self, timeout: int = 50000):
         """Открытие нужного адреса"""
         with allure.step("Переходим по URL"):
             self.page.goto(self.url, timeout=timeout)
 
-    def check_open(self, url):
+    def wait_page_url(self, timeout: int = 30, endpoint: str = ""):
+        expected_url = urljoin(self.url, endpoint)
+        with allure.step(f"Ожидаем отображение страницы и проверяем ее url == {expected_url}"):
+            self.page.wait_for_url(expected_url, timeout=timeout * TIMEOUT_MULTIPLIER)
+
+    def check_open(self):
         """Проверка открытия страницы"""
-        with allure.step("Проверяем открытие страницы"):
-            expect(self.page).to_have_url(url)
+        self.wait_page_url()
 
     def check_title(self):
         """Проверка заголовка страницы"""

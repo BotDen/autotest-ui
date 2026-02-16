@@ -8,6 +8,7 @@ class DonePage(BasePage):
     """Страница подтверждения оформления заказа"""
 
     TITLE = "Order Placed!"
+    URL = "payment_done/0"
     TEXT = "Congratulations! Your order has been confirmed!"
 
     def __init__(self, page):

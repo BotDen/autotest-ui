@@ -1,6 +1,3 @@
-import random
-import string
-
 import allure
 
 from pages.base_page import BasePage
@@ -8,6 +5,8 @@ from pages.base_page import BasePage
 
 class LoginPage(BasePage):
     """Страница входа/регистрации аккаунта"""
+
+    URL = "login"
 
     def __init__(self, page):
         super().__init__(page)
@@ -20,16 +19,8 @@ class LoginPage(BasePage):
         self.login_password = self._login_form.get_by_placeholder("Password")
         self.btn_login = self._login_form.get_by_role("button", name="Login")
 
-    def generate_random_email(self, length=8):
-        """Генерация случайного email"""
-        characters = string.ascii_lowercase + string.digits
-        random_username = ''.join(random.choice(characters) for _ in range(length))
-        email = f"{random_username}@mail.ru"
-        return email
-
-    def fill_form(self, name: str):
+    def fill_form(self, email: str, name: str):
         """Заполняет поля 'Name' и 'Email' для регистрации аккаунта"""
-        email = self.generate_random_email()
         with allure.step(f"Заполняем поля 'Name' и 'Email' значениями '{name}' и '{email}'"):
             self.name.fill(name)
             self.signup_email.fill(email)

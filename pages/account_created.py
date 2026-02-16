@@ -7,6 +7,7 @@ class AccountCreated(BasePage):
     """Страница подтверждения оформления аккаунта"""
 
     TITLE = "Account Created!"
+    URL = "account_created"
     CONGRATULATIONS = "Congratulations! Your new account has been successfully created!"
     YOU_CAN = """You can now take advantage of member privileges to 
     enhance your online shopping experience with us."""

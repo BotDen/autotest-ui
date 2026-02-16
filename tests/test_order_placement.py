@@ -1,7 +1,7 @@
 import allure
 import pytest
 
-from data.data import Url, User, Items
+from data.data import User, Items
 from data.pay_cards import CARD_01
 
 
@@ -15,17 +15,17 @@ def test_success_order_placement(
     payment_page,
     done_page,
 ):
-    main_page.go_to_url()
-    main_page.go_to_login()
+    main_page.open_url()
+    main_page.open_login_page()
     login_page.login(User.user_email, User.password)
     main_page.add_one_item_to_cart(Items.blue_top)
-    main_page.go_to_cart()
-    cart_page.check_open(Url.cart_url)
+    main_page.open_cart_page()
+    cart_page.check_open()
     cart_page.proceed_to_checkout()
-    checkout_page.check_open(Url.checkout_url)
+    checkout_page.check_open()
     checkout_page.check_items_in_cart(["Blue top"])
     checkout_page.place_order()
-    payment_page.check_open(Url.payment_url)
+    payment_page.check_open()
     payment_page.fill_form_payment(
         first_name=User.first_name,
         last_name=User.last_name,

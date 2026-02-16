@@ -1,15 +1,5 @@
 from dataclasses import dataclass
-
-
-class Url:
-    main_url = "https://automationexercise.com/"
-    login_url = f"{main_url}login"
-    signup_url = f"{main_url}signup"
-    account_created_url = f"{main_url}account_created"
-    cart_url = f"{main_url}view_cart"
-    checkout_url = f"{main_url}checkout"
-    payment_url = f"{main_url}payment"
-    done_url = f"{main_url}payment_done/0"
+from enum import Enum
 
 
 class User:
@@ -22,15 +12,15 @@ class User:
     zipcode = "ROC OCO"
     mobile_number = "+12505550199"
 
-class Gender:
+class Gender(str, Enum):
     mr = "Mr."
     mrs = "Mrs."
 
-class CheckBox:
+class CheckBox(str, Enum):
     newsletter = "#newsletter"
     from_partners = "#optin"
 
-class Months:
+class Months(str, Enum):
     JANUARY = "January"
     FEBRUARY = "February"
     MARCH = "March"
@@ -44,22 +34,22 @@ class Months:
     NOVEMBER = "November"
     DECEMBER = "December"
 
-class Country:
+class Country(str, Enum):
     usa = "United State"
     india = "India"
     canada = "Canada"
 
-class CanadaState:
+class CanadaState(str, Enum):
     ontario = "Ontario"
     quebec = "Quebec"
     nova_scotia = "Nova Scotia"
     manitoba = "Manitoba"
 
-class CanadaCity:
+class CanadaCity(str, Enum):
     brandon = "Brandon"
     gimli = "Gimli"
 
-class Items:
+class Items(Enum):
     blue_top = "1"
     men_tshirt = 2
     sleeveless_dress = 3

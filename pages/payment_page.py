@@ -7,6 +7,7 @@ from pages.base_page import BasePage
 class PaymentPage(BasePage):
     """Страница оплаты заказа"""
 
+    URL = "payment"
     ALERT_SUCCESS = "Your order has been placed successfully!"
 
     def __init__(self, page):

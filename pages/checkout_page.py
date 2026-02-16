@@ -6,6 +6,8 @@ from pages.base_page import BasePage
 class CheckoutPage(BasePage):
     """Страница оформления заказа"""
 
+    URL = "checkout"
+
     def __init__(self, page):
         super().__init__(page)
         self._address_delivery = self.page.locator("#address_delivery")

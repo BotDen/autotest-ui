@@ -6,6 +6,8 @@ from pages.base_page import BasePage
 class SignupPage(BasePage):
     """Страница ввода данных аккаунта"""
 
+    URL = "signup"
+
     def __init__(self, page):
         super().__init__(page)
         self.gender = self.page.locator(".clearfix")

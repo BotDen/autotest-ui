@@ -6,6 +6,8 @@ from pages.base_page import BasePage
 class CartPage(BasePage):
     """Страница корзины с товаром"""
 
+    URL = "view_cart"
+
     def __init__(self, page):
         super().__init__(page)
         self.proceed_btn = self.page.get_by_text("Proceed To Checkout")
