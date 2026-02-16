@@ -10,7 +10,7 @@ def test_success_registration(
     signup_page,
     account_created_page
 ):
-    main_page.go_to_url(timeout=50000)
+    main_page.go_to_url()
     main_page.check_open(Url.main_url)
     main_page.go_to_login()
     login_page.check_open(Url.login_url)

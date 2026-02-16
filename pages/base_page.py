@@ -21,7 +21,7 @@ class BasePage(ABC):
     def url(self) -> str:
         return urljoin(settings.http_client.client_url, self.URL)
 
-    def go_to_url(self, timeout: int | None = None):
+    def go_to_url(self, timeout: int = 50000):
         """Открытие нужного адреса"""
         with allure.step("Переходим по URL"):
             self.page.goto(self.url, timeout=timeout)

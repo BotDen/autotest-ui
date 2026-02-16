@@ -15,7 +15,7 @@ def test_success_order_placement(
     payment_page,
     done_page,
 ):
-    main_page.go_to_url(timeout=50000)
+    main_page.go_to_url()
     main_page.go_to_login()
     login_page.login(User.user_email, User.password)
     main_page.add_one_item_to_cart(Items.blue_top)
