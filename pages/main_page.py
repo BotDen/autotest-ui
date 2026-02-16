@@ -7,8 +7,9 @@ from pages.base_page import BasePage
 class MainPage(BasePage):
     """Главная страница"""
 
-    MODAL_TITLE = "Added!"
+    TITLE = "Added!"
     CONTINUE_SHOPPING = "Continue Shopping"
+    URL = ""
 
     def __init__(self, page):
         super().__init__(page)
@@ -45,5 +46,5 @@ class MainPage(BasePage):
                     add_to_cart_btn.click()
 
                     self._modal.wait_for(timeout=5000)
-                    expect(self._modal.filter().locator(".modal-title")).to_have_text(self.MODAL_TITLE)
+                    expect(self._modal.filter().locator(".modal-title")).to_have_text(self.TITLE)
                     self._modal.get_by_role("button", name=self.CONTINUE_SHOPPING).click()

@@ -1,21 +1,30 @@
+from abc import ABC
+from urllib.parse import urljoin
+
 import allure
 from playwright.sync_api import Page, expect
 
+from config import settings
 
-class BasePage:
+
+class BasePage(ABC):
     """Базовый класс для страниц"""
 
     TITLE = ""
-    URL = "https://automationexercise.com/"
+    URL = "/"
 
     def __init__(self, page: Page):
         self.page = page
         self.title = self.page.get_by_role("heading", name=self.TITLE)
 
-    def go_to_url(self, url: str, timeout: int | None = None):
+    @property
+    def url(self) -> str:
+        return urljoin(settings.http_client.client_url, self.URL)
+
+    def go_to_url(self, timeout: int = 50000):
         """Открытие нужного адреса"""
         with allure.step("Переходим по URL"):
-            self.page.goto(url, timeout=timeout)
+            self.page.goto(self.url, timeout=timeout)
 
     def check_open(self, url):
         """Проверка открытия страницы"""
