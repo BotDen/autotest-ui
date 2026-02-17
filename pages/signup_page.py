@@ -6,6 +6,8 @@ from pages.base_page import BasePage
 class SignupPage(BasePage):
     """Страница ввода данных аккаунта"""
 
+    URL = "signup"
+
     def __init__(self, page):
         super().__init__(page)
         self.gender = self.page.locator(".clearfix")
@@ -43,12 +45,12 @@ class SignupPage(BasePage):
 
     def choose_check_box(self, checkbox: str):
         """Выбор дополнительной подписки"""
-        with allure.step(f"Выбираем дополнительную подписку '{checkbox}'"):
+        with allure.step(f"Выбираем дополнительную подписку {checkbox}"):
             self.page.query_selector(checkbox)
 
     def fill_name(self, first_name: str, last_name: str):
         """Ввод фамилии и имени"""
-        with allure.step(f"Вводим фамилию и имя '{last_name, first_name}'"):
+        with allure.step(f"Вводим фамилию {last_name} и имя {first_name}"):
             self.first_name.fill(first_name)
             self.last_name.fill(last_name)
 

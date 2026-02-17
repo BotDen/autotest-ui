@@ -6,6 +6,8 @@ from pages.base_page import BasePage
 class CheckoutPage(BasePage):
     """Страница оформления заказа"""
 
+    URL = "checkout"
+
     def __init__(self, page):
         super().__init__(page)
         self._address_delivery = self.page.locator("#address_delivery")
@@ -19,7 +21,7 @@ class CheckoutPage(BasePage):
 
     def check_items_in_cart(self, expect_items: list):
         """Проверка товаров в корзине"""
-        with allure.step("Проверяем добавленный товар в корзине"):
+        with allure.step(f"Проверяем добавленный товар в корзине {expect_items}"):
             current_items = self.page.query_selector_all("tbody tr[id^='product-']")
             items_info = []
 

@@ -7,6 +7,7 @@ class AccountCreated(BasePage):
     """Страница подтверждения оформления аккаунта"""
 
     TITLE = "Account Created!"
+    URL = "account_created"
     CONGRATULATIONS = "Congratulations! Your new account has been successfully created!"
     YOU_CAN = """You can now take advantage of member privileges to 
     enhance your online shopping experience with us."""
@@ -21,12 +22,12 @@ class AccountCreated(BasePage):
 
     def check_text_congratulations(self):
         """Проверка текста на странице"""
-        with allure.step("Проверяем 'congratulations' текст на странице"):
+        with allure.step(f"Проверяем {self.CONGRATULATIONS} текст на странице"):
             self.congratulations.is_visible()
 
     def check_text_you_can(self):
         """Проверка текста на странице"""
-        with allure.step("Проверяем 'you_can' текст на странице"):
+        with allure.step(f"Проверяем {self.YOU_CAN} текст на странице"):
             self.you_can.is_visible()
 
     def click_continue(self):

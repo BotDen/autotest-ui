@@ -19,12 +19,12 @@ class MainPage(BasePage):
         self._modal = self.page.locator("#cartModal")
         self.add_to_cart_btn = self.page.locator(".productinfo")
 
-    def go_to_login(self):
+    def open_login_page(self):
         """Переход на страницу входа/регистрации аккаунта"""
         with allure.step("Переходим на страницу вход/регистрация аккаунта"):
             self.login.click()
 
-    def go_to_cart(self):
+    def open_cart_page(self):
         """Переходим на страницу корзины"""
         with allure.step("Переходим в корзину"):
             self.cart.click()
@@ -35,7 +35,7 @@ class MainPage(BasePage):
         with allure.step(f"Добавляем в корзину {item}"):
             self.add_to_cart_btn.locator(f"a[data-product-id='{item}']").first.click()
 
-    def add_items_to_cart(self, items: list):
+    def add_items_to_cart(self, items: list[int]):
         """Добавление нескольких товаров в корзину"""
 
         with allure.step("Добавляем товары в корзину"):

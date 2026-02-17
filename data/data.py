@@ -1,15 +1,5 @@
 from dataclasses import dataclass
-
-
-class Url:
-    main_url = "https://automationexercise.com/"
-    login_url = f"{main_url}login"
-    signup_url = f"{main_url}signup"
-    account_created_url = f"{main_url}account_created"
-    cart_url = f"{main_url}view_cart"
-    checkout_url = f"{main_url}checkout"
-    payment_url = f"{main_url}payment"
-    done_url = f"{main_url}payment_done/0"
+from enum import Enum
 
 
 class User:
@@ -22,15 +12,18 @@ class User:
     zipcode = "ROC OCO"
     mobile_number = "+12505550199"
 
-class Gender:
-    mr = "Mr."
-    mrs = "Mrs."
 
-class CheckBox:
-    newsletter = "#newsletter"
-    from_partners = "#optin"
+class Gender(str, Enum):
+    MR = "Mr."
+    MRS = "Mrs."
 
-class Months:
+
+class CheckBox(str, Enum):
+    NEWS_LETTER = "#newsletter"
+    FROM_PARTNERS = "#optin"
+
+
+class Months(str, Enum):
     JANUARY = "January"
     FEBRUARY = "February"
     MARCH = "March"
@@ -44,26 +37,38 @@ class Months:
     NOVEMBER = "November"
     DECEMBER = "December"
 
-class Country:
-    usa = "United State"
-    india = "India"
-    canada = "Canada"
 
-class CanadaState:
-    ontario = "Ontario"
-    quebec = "Quebec"
-    nova_scotia = "Nova Scotia"
-    manitoba = "Manitoba"
+class Country(str, Enum):
+    USA = "United State"
+    INDIA = "India"
+    CANADA = "Canada"
 
-class CanadaCity:
-    brandon = "Brandon"
-    gimli = "Gimli"
 
-class Items:
-    blue_top = "1"
-    men_tshirt = 2
-    sleeveless_dress = 3
-    stylish_dress = 4
+class CanadaState(str, Enum):
+    ONTARIO = "Ontario"
+    QUEBEC = "Quebec"
+    NOVA_SCOTIA = "Nova Scotia"
+    MANITOBA = "Manitoba"
+
+
+class CanadaCity(str, Enum):
+    BRANDON = "Brandon"
+    GIMLI = "Gimli"
+
+
+class ItemsInt(int, Enum):
+    BLUE_TOP = 1
+    MEN_TSHIRT = 2
+    SLEEVELESS_DRESS = 3
+    STYLISH_DRESS = 4
+
+
+class ItemsStr(str, Enum):
+    BLUE_TOP = "Blue top"
+    MEN_TSHIRT = "Men tshirt"
+    SLEEVELESS_DRESS = "Sleeveless dress"
+    STYLISH_DRESS = "Stylish dress"
+
 
 @dataclass
 class Card:
