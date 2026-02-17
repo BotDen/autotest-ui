@@ -12,13 +12,16 @@ class User:
     zipcode = "ROC OCO"
     mobile_number = "+12505550199"
 
+
 class Gender(str, Enum):
-    mr = "Mr."
-    mrs = "Mrs."
+    MR = "Mr."
+    MRS = "Mrs."
+
 
 class CheckBox(str, Enum):
-    newsletter = "#newsletter"
-    from_partners = "#optin"
+    NEWS_LETTER = "#newsletter"
+    FROM_PARTNERS = "#optin"
+
 
 class Months(str, Enum):
     JANUARY = "January"
@@ -34,26 +37,38 @@ class Months(str, Enum):
     NOVEMBER = "November"
     DECEMBER = "December"
 
+
 class Country(str, Enum):
-    usa = "United State"
-    india = "India"
-    canada = "Canada"
+    USA = "United State"
+    INDIA = "India"
+    CANADA = "Canada"
+
 
 class CanadaState(str, Enum):
-    ontario = "Ontario"
-    quebec = "Quebec"
-    nova_scotia = "Nova Scotia"
-    manitoba = "Manitoba"
+    ONTARIO = "Ontario"
+    QUEBEC = "Quebec"
+    NOVA_SCOTIA = "Nova Scotia"
+    MANITOBA = "Manitoba"
+
 
 class CanadaCity(str, Enum):
-    brandon = "Brandon"
-    gimli = "Gimli"
+    BRANDON = "Brandon"
+    GIMLI = "Gimli"
 
-class Items(Enum):
-    blue_top = "1"
-    men_tshirt = 2
-    sleeveless_dress = 3
-    stylish_dress = 4
+
+class ItemsInt(int, Enum):
+    BLUE_TOP = 1
+    MEN_TSHIRT = 2
+    SLEEVELESS_DRESS = 3
+    STYLISH_DRESS = 4
+
+
+class ItemsStr(str, Enum):
+    BLUE_TOP = "Blue top"
+    MEN_TSHIRT = "Men tshirt"
+    SLEEVELESS_DRESS = "Sleeveless dress"
+    STYLISH_DRESS = "Stylish dress"
+
 
 @dataclass
 class Card:

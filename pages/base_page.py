@@ -24,7 +24,7 @@ class BasePage(ABC):
 
     def open_url(self, timeout: int = 50000):
         """Открытие нужного адреса"""
-        with allure.step("Переходим по URL"):
+        with allure.step(f"Переходим по URL {self.url}"):
             self.page.goto(self.url, timeout=timeout)
 
     def wait_page_url(self, timeout: int = 30, endpoint: str = ""):

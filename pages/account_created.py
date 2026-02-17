@@ -22,12 +22,12 @@ class AccountCreated(BasePage):
 
     def check_text_congratulations(self):
         """Проверка текста на странице"""
-        with allure.step("Проверяем 'congratulations' текст на странице"):
+        with allure.step(f"Проверяем {self.CONGRATULATIONS} текст на странице"):
             self.congratulations.is_visible()
 
     def check_text_you_can(self):
         """Проверка текста на странице"""
-        with allure.step("Проверяем 'you_can' текст на странице"):
+        with allure.step(f"Проверяем {self.YOU_CAN} текст на странице"):
             self.you_can.is_visible()
 
     def click_continue(self):

@@ -24,11 +24,16 @@ class PaymentPage(BasePage):
     def fill_form_payment(self, first_name: str, last_name: str, card_number: str, cvc: str, month: str, year: str):
         """Заполнение полей для оплаты"""
         with allure.step("Заполняем поля для оплаты заказа"):
-            self.name.fill(f"{first_name} {last_name}")
-            self.card_number.fill(card_number)
-            self.cvc.fill(cvc)
-            self.expiration_month.fill(month)
-            self.expiration_year.fill(year)
+            with allure.step(f"Вводим имя first_name: {first_name} и last_name: {last_name}"):
+                self.name.fill(f"{first_name} {last_name}")
+            with allure.step(f"Вводим номер карты {card_number}"):
+                self.card_number.fill(card_number)
+            with allure.step(f"Вводим cvc карты {cvc}"):
+                self.cvc.fill(cvc)
+            with allure.step(f"Вводим месяц действия карты {month}"):
+                self.expiration_month.fill(month)
+            with allure.step(f"Вводим год действия карты {year}"):
+                self.expiration_year.fill(year)
 
     def pay_order(self):
         """Оплата заказа"""

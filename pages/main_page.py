@@ -35,7 +35,7 @@ class MainPage(BasePage):
         with allure.step(f"Добавляем в корзину {item}"):
             self.add_to_cart_btn.locator(f"a[data-product-id='{item}']").first.click()
 
-    def add_items_to_cart(self, items: list):
+    def add_items_to_cart(self, items: list[int]):
         """Добавление нескольких товаров в корзину"""
 
         with allure.step("Добавляем товары в корзину"):

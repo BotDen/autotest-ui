@@ -32,7 +32,7 @@ class LoginPage(BasePage):
 
     def login(self, email: str, password: str):
         """Вход в аккаунт"""
-        with allure.step("Входим в аккаунт"):
+        with allure.step(f"Входим в аккаунт с email: {email} и password: {password}"):
             self.login_email.fill(email)
             self.login_password.fill(password)
             self.btn_login.click()
