@@ -24,8 +24,8 @@ jobs:
       - name: Install project requirements
         run: |
           python -m pip install --upgrade pip
-          playwright install 
           pip install -r requirements.txt
+          playwright install 
 
       - name: Run UI test with pytest and generate allure results
         run: |
